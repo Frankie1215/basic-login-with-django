@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="row">
+      <div class="col-12 col-md-10 mx-auto">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link {% if type == 'login' %}active{% endif %}" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if type == 'signup' %}active{% endif %}" data-toggle="tab" href="#signup" role="tab" aria-controls="signup" aria-selected="false">Signup</a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+
+          <!-- login tab -->
+          <div class="tab-pane fade {% if type == 'login' %}show active{% endif %}" id="login" role="tabpanel" aria-labelledby="login-tab">
+            <form method="post" action="{% url 'login' %}" role="form">
+              {% csrf_token %}
+
+              <div class="form-group">
+                <input id="login_email" class="form-control" maxlength="254" name="email" type="email" placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <input id="login_password" class="form-control" name="password" type="password" placeholder="Password" required>
+              </div>
+              <input class="btn btn-light submit" type="submit" value="Submit" />
+            </form>
+          </div>
+
+          <!-- singup tab -->
+          <div class="tab-pane fade {% if type == 'signup' %}show active{% endif %}" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+            <label class="note">Please enter email and password</label>
+            <form method="post" action="{% url 'signup' %}" role="form">
+              {% csrf_token %}
+
+              <div class="form-group">
+                <input id="signup_email" class="form-control" maxlength="254" name="email" type="email" placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <input id="signup_password" class="form-control" name="password" type="password" placeholder="Password" required>
+              </div>
+              <div class="form-group">
+                <input id="signup_confirm_password" class="form-control" name="confirm_password" type="password" placeholder="Confirm Password" required>
+              </div>
+              <input class="btn btn-light submit" type="submit" value="Submit" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

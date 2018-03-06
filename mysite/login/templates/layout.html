@@ -1,0 +1,59 @@
+{% load staticfiles %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<style>
+.container {
+  margin-top: 50px;
+}
+
+.note {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+.logo {
+  height: 56px;
+}
+
+@media (min-width: 1200px) {
+    .container{
+        max-width: 700px;
+    }
+}
+
+@media (min-width: 401px) and (max-width: 450px) {
+    #deposit_address {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    #deposit_address {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 30px;
+    }
+}
+
+</style>
+
+{% for message in messages %}
+  <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+{% endfor %}
+
+<div class="container">
+  {% block content %}
+  {% endblock %}
+</div>
