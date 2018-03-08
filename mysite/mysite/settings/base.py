@@ -91,6 +91,37 @@ EMAIL_CONTEXT = "Thank you for registering your account! To verify your email ad
 
 EMAIL_HOST_USER = "Frankie"
 
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'logfile': {
+            'class': 'logging.handlers.WatchedFileHandler',
+            'formatter': 'verbose',
+            'filename': os.path.join(BASE_DIR, '..', 'log', 'django.log')
+        }
+    },
+    'formatters': {
+        'verbose': {
+            'format': '[%(asctime)s][%(levelname)-5s][%(module)s][%(funcName)s():%(lineno)d]: %(message)s'
+        }
+    },
+    'loggers': {
+        # -- Overwrite the default logger 'django' to write into file
+        'django': {
+            'handlers': ['logfile'],
+            'propagate': False,
+        },
+        # -- For developer, please use this logger
+        'django.logfile': {
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
