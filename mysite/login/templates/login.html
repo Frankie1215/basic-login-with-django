@@ -31,7 +31,6 @@
 
           <!-- singup tab -->
           <div class="tab-pane fade {% if type == 'signup' %}show active{% endif %}" id="signup" role="tabpanel" aria-labelledby="signup-tab">
-            <label class="note">Please enter email and password</label>
             <form method="post" action="{% url 'signup' %}" role="form">
               {% csrf_token %}
 
