@@ -118,7 +118,12 @@ def verify(request):
     verify_uuid = request.GET.get('verify_uuid', '')
     user = User.objects.filter(verify_uuid=verify_uuid).first()
 
-    if user.verified:
+    if not user:
+        logger.warning("Don't have this account.  verify_uuid: {verify_uuid}".format(
+            verify_uuid=verify_uuid
+        ))
+        return redirect(settings.LOGIN_URL)
+    elif user.verified:
         return redirect(settings.LOGIN_URL)
 
     user.verified = True
